@@ -25,7 +25,7 @@ const WalletScreen = () => {
         <AntDesign name="arrowleft" size={24} color="white" />
         <Text style={styles.headerText}>Wallet</Text>
       </Pressable>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.card}>
           <Text>Rumper Cash</Text>
           <View style={styles.amountContainer}>
@@ -44,19 +44,22 @@ const WalletScreen = () => {
             <MaterialCommunityIcons name="cash" color="green" size={34} />
             <Text style={styles.cashText}>Cash</Text>
           </View>
-          <Pressable>
+          <Pressable onPress={() => navigation.navigate('Payment')}>
             <Text style={styles.paymentMethod}>Add Payment Method</Text>
           </Pressable>
         </View>
 
         <View style={styles.profiles}>
           <Text style={styles.subTitle}>Ride Profiles</Text>
-          <View style={styles.profileItem}>
+          <Pressable
+            style={styles.profileItem}
+            onPress={() => navigation.navigate('Profile')}>
             <View style={styles.iconContainer}>
               <FontAwesome name="user" size={24} color="white" />
             </View>
             <Text style={styles.profileText}>Personal</Text>
-          </View>
+          </Pressable>
+
           <Pressable
             style={styles.profileItem}
             onPress={() => navigation.navigate('Business')}>

@@ -11,50 +11,45 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Input from '../../components/input';
+import Input from '../../../components/input';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
+const SCREEN_HEIGHT = Dimensions.get('screen').height;
 
-const AddPromo = () => {
-  const [code, setCode] = useState('');
+const ReceiptEmail = () => {
+  const [email, setEmail] = useState('');
   const navigation = useNavigation();
+
+  const validateEmail = email => {
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Pressable style={styles.header} onPress={() => navigation.goBack()}>
-        <AntDesign name="arrowleft" size={24} color="white" />
-        <Text style={styles.headerText}>Add Promo Code</Text>
+        <AntDesign name="arrowleft" size={24} />
       </Pressable>
-
+      <Text style={styles.headerText}>Receipt Email</Text>
       <View style={styles.input}>
-        <Input
-          label="Code"
-          placeholder="Enter a promo code"
-          autoFocus
-          value={code}
-          onChange={setCode}
-          labelStyles={{color: 'grey'}}
-          containertStyles={{
-            backgroundColor: 'white',
-            borderWidth: 0,
-            borderBottomWidth: 2,
-            paddingHorizontal: 0,
-          }}
-          iconVariant="plain"
-        />
+        <Input label="Email" autoFocus value={email} onChange={setEmail} />
+        <Text style={styles.footerText}>
+          Your email address will remain private
+        </Text>
       </View>
-
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.btnContainer}>
         <Pressable
           onPress={() => navigation.navigate('EnterMobile')}
-          style={[styles.btn, code.length === 0 && {backgroundColor: '#ddd'}]}
-          disabled={code.length === 0}>
-          <Text style={styles.btnText}>Add</Text>
+          style={[
+            styles.btn,
+            !validateEmail(email) && {backgroundColor: '#ddd'},
+          ]}
+          disabled={!validateEmail(email)}>
+          <Text style={styles.btnText}>Save</Text>
         </Pressable>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -66,15 +61,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
     padding: 20,
-    backgroundColor: 'black',
   },
   headerText: {
-    color: 'white',
+    fontSize: 26,
+    fontWeight: 'bold',
     marginLeft: 20,
-    fontSize: 20,
   },
   input: {
     margin: 20,
@@ -100,14 +92,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   footerText: {
+    marginTop: 5,
     color: 'grey',
-    margin: 20,
-    lineHeight: 20,
-    fontSize: 12,
-  },
-  footerSpan: {
-    textDecorationLine: 'underline',
   },
 });
 
-export default AddPromo;
+export default ReceiptEmail;

@@ -11,13 +11,16 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Entypo from 'react-native-vector-icons/Entypo';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Foundation from 'react-native-vector-icons/Foundation';
 import ImageBg from '../../../assets/images/5283.jpg';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
 const SCREEN_HEIGHT = Dimensions.get('screen').height;
 
-const Business = () => {
+const Profile = () => {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
@@ -25,22 +28,17 @@ const Business = () => {
         <AntDesign name="close" size={24} />
       </Pressable>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Text style={styles.headerText}>Simplify work travel</Text>
-        <Image source={ImageBg} style={styles.image} />
-
+        <Text style={styles.headerText}>Profile settings</Text>
         <Pressable
-          onPress={() => navigation.navigate('BusinessRide')}
+          onPress={() => navigation.navigate('EditName')}
           style={styles.businessItem}>
-          <Icon name="user-alt" size={24} />
+          <MaterialCommunityIcons name="briefcase" size={24} />
           <View style={styles.businessDetails}>
             <View style={styles.businessDetailComp}>
-              <Text style={styles.subTitle}>Ride for business</Text>
-              <Text style={styles.businessText}>
-                Get receipts emailed to a work inbox, keep work trips separate
-                and more.
-              </Text>
+              <Text style={styles.subTitle}>Profile Name</Text>
+              <Text style={styles.businessText}>Personal</Text>
             </View>
-            <Icon
+            <FontAwesome5
               name="chevron-right"
               size={18}
               color="grey"
@@ -50,18 +48,15 @@ const Business = () => {
         </Pressable>
 
         <Pressable
-          onPress={() => navigation.navigate('BusinessTeam')}
+          onPress={() => navigation.navigate('ReceiptEmail')}
           style={styles.businessItem}>
-          <Icon name="user-friends" size={24} />
+          <Entypo name="mail" size={24} />
           <View style={styles.businessDetails}>
             <View style={styles.businessDetailComp}>
-              <Text style={styles.subTitle}>Create a team account</Text>
-              <Text style={styles.businessText}>
-                Set rules for travel expensing and invite others to charge
-                eligible rides.
-              </Text>
+              <Text style={styles.subTitle}>Email for receipt</Text>
+              <Text style={styles.businessText}>israelitua20@gmail.com</Text>
             </View>
-            <Icon
+            <FontAwesome5
               name="chevron-right"
               size={18}
               color="grey"
@@ -71,18 +66,15 @@ const Business = () => {
         </Pressable>
 
         <Pressable
-          onPress={() => navigation.navigate('BusinessAccount')}
+          onPress={() => navigation.navigate('DefaultPayment')}
           style={styles.businessItem}>
-          <Icon name="user-plus" size={24} />
-          <View style={styles.businessDetails}>
+          <Foundation name="credit-card" size={28} />
+          <View style={[styles.businessDetails, {borderBottomWidth: 0}]}>
             <View style={styles.businessDetailComp}>
-              <Text style={styles.subTitle}>Join an existing account</Text>
-              <Text style={styles.businessText}>
-                Link your account to a business and start expensing eligible
-                rides.
-              </Text>
+              <Text style={styles.subTitle}>Default payment</Text>
+              <Text style={styles.businessText}>Cash</Text>
             </View>
-            <Icon
+            <FontAwesome5
               name="chevron-right"
               size={18}
               color="grey"
@@ -90,6 +82,13 @@ const Business = () => {
             />
           </View>
         </Pressable>
+
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>
+            When you ride using this profile, these prefereces will be selected
+            by default
+          </Text>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -137,6 +136,16 @@ const styles = StyleSheet.create({
   subTitle: {
     fontWeight: 'bold',
   },
+  footer: {
+    borderTopWidth: 1,
+    borderTopColor: '#ddd',
+    padding: 20,
+  },
+  footerText: {
+    color: 'grey',
+    fontSize: 12,
+    lineHeight: 18,
+  },
 });
 
-export default Business;
+export default Profile;

@@ -6,19 +6,6 @@ import {Marker} from 'react-native-maps';
 import carsData from '../assets/data/cars';
 import {API_KEY} from '@env';
 
-const styles = StyleSheet.create({
-  container: {
-    ...StyleSheet.absoluteFillObject,
-    height: '100%',
-
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  map: {
-    ...StyleSheet.absoluteFillObject,
-  },
-});
-
 const Map = () => {
   const getImage = type => {
     if (type === 'UberX') return require('../assets/images/top-UberX.png');
@@ -34,8 +21,8 @@ const Map = () => {
         provider={PROVIDER_GOOGLE}
         style={styles.map}
         region={{
-          latitude: 28.450627,
-          longitude: -16.263045,
+          latitude: 6.465422,
+          longitude: 3.406448,
           latitudeDelta: 0.0222,
           longitudeDelta: 0.0121,
         }}>
@@ -72,5 +59,18 @@ const Map = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    ...StyleSheet.absoluteFillObject,
+    height: '100%',
+
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
+});
 
 export default Map;

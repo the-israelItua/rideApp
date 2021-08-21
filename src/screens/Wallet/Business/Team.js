@@ -26,7 +26,7 @@ const TeamAccount = () => {
       <Pressable style={styles.header} onPress={() => navigation.goBack()}>
         <AntDesign name="arrowleft" size={24} />
       </Pressable>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.headerText}>Team account</Text>
         <Image source={ImageBg} style={styles.image} />
 

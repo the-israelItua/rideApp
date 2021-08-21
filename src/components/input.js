@@ -1,21 +1,40 @@
 import React from 'react';
 import {View, TextInput, Text, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
-const Input = ({label, autoFocus, value, onChange}) => {
+const Input = ({
+  label,
+  placeholder,
+  autoFocus,
+  value,
+  onChange,
+  containertStyles,
+  labelStyles,
+  iconVariant,
+}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>{label}</Text>
-      <View style={styles.inputContainer}>
+      <Text style={{...styles.label, ...labelStyles}}>{label}</Text>
+      <View style={{...styles.inputContainer, ...containertStyles}}>
         <TextInput
           style={styles.input}
+          placeholder={placeholder}
           value={value}
           autoFocus={autoFocus}
           onChangeText={text => onChange(text)}
         />
         {value.length > 0 && (
           <View style={styles.icon}>
-            <Icon name="close-circle" size={24} onPress={() => onChange('')} />
+            {iconVariant === 'plain' ? (
+              <EvilIcons name="close" size={24} onPress={() => onChange('')} />
+            ) : (
+              <Icon
+                name="close-circle"
+                size={24}
+                onPress={() => onChange('')}
+              />
+            )}
           </View>
         )}
       </View>

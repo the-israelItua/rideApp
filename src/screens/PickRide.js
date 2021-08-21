@@ -12,7 +12,7 @@ const PickRide = () => {
       <View style={{height: '50%'}}>
         <Map />
       </View>
-      <ScrollView style={{height: '50%'}}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{height: '50%'}}>
         <RidesAvailable />
       </ScrollView>
     </View>

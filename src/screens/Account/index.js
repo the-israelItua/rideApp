@@ -27,7 +27,7 @@ const AccountScreen = () => {
         <AntDesign name="arrowleft" size={24} color="white" />
         <Text style={styles.headerText}>Edit Account</Text>
       </Pressable>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.profileImageContainer}>
           <Pressable style={styles.profileImage}>
             <Entypo name="user" color="#DCDCDC" size={45} />

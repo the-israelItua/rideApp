@@ -1,11 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
   View,
   Image,
   Text,
-  TextInput,
   StyleSheet,
   Pressable,
   Dimensions,
@@ -16,37 +15,52 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Input from '../../components/input';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
-const SCREEN_HEIGHT = Dimensions.get('screen').height;
 
-const AddVoucher = () => {
+const AddPromo = () => {
+  const [code, setCode] = useState('');
   const navigation = useNavigation();
   return (
-    <View>
+    <SafeAreaView style={styles.container}>
       <Pressable style={styles.header} onPress={() => navigation.goBack()}>
         <AntDesign name="arrowleft" size={24} color="white" />
-        <Text style={styles.headerText}>Add Voucher</Text>
+        <Text style={styles.headerText}>Add Voucher Code</Text>
       </Pressable>
 
-      <View style={styles.inner}>
-        <Text>Code</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter a voucher"
+      <View style={styles.input}>
+        <Input
+          label="Code"
+          placeholder="Enter voucher code"
           autoFocus
+          value={code}
+          onChange={setCode}
+          labelStyles={{color: 'grey'}}
+          containertStyles={{
+            backgroundColor: 'white',
+            borderWidth: 0,
+            borderBottomWidth: 2,
+            paddingHorizontal: 0,
+          }}
+          iconVariant="plain"
         />
+        <Text style={styles.text}>
+          Enter the code in order to claim and use your voucher
+        </Text>
       </View>
+
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.container}>
+        style={styles.btnContainer}>
         <Pressable
-          style={styles.btn}
-          onPress={() => navigation.navigate('EnterMobile')}>
-          <Text style={styles.btnText}>Add</Text>
+          onPress={() => navigation.navigate('EnterMobile')}
+          style={[styles.btn, code.length === 0 && {backgroundColor: '#ddd'}]}
+          disabled={code.length === 0}>
+          <Text style={styles.btnText}>Continue</Text>
         </Pressable>
       </KeyboardAvoidingView>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -58,7 +72,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 20,
-    paddingTop: '15%',
     backgroundColor: 'black',
   },
   headerText: {
@@ -66,93 +79,42 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     fontSize: 20,
   },
-  inner: {
-    marginLeft: 20,
-    marginTop: 30,
-  },
   input: {
-    borderBottomWidth: 2,
-    width: SCREEN_WIDTH - 40,
-    paddingVertical: 10,
-    fontSize: 18,
-    paddingVertical: 15,
+    margin: 20,
   },
-
-  btn: {
+  text: {
+    marginTop: 10,
+    color: 'grey',
+  },
+  btnContainer: {
     position: 'absolute',
-    bottom: 30,
+    bottom: 40,
+  },
+  btn: {
     flexDirection: 'row',
     backgroundColor: 'black',
     width: SCREEN_WIDTH - 40,
-    height: 50,
+    height: 55,
     borderRadius: 4,
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: 20,
+    marginBottom: 20,
   },
   btnText: {
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
   },
+  footerText: {
+    color: 'grey',
+    margin: 20,
+    lineHeight: 20,
+    fontSize: 12,
+  },
+  footerSpan: {
+    textDecorationLine: 'underline',
+  },
 });
 
-export default AddVoucher;
-
-// import React from 'react';
-// import {
-//   View,
-//   KeyboardAvoidingView,
-//   TextInput,
-//   StyleSheet,
-//   Text,
-//   Platform,
-//   TouchableWithoutFeedback,
-//   Button,
-//   Keyboard,
-// } from 'react-native';
-
-// const KeyboardAvoidingComponent = () => {
-//   return (
-//     <KeyboardAvoidingView
-//       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-//       style={styles.container}>
-//       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-//         <View style={styles.inner}>
-//           <Text style={styles.header}>Header</Text>
-//           <TextInput placeholder="Username" style={styles.textInput} />
-//           <View style={styles.btnContainer}>
-//             <Button title="Submit" onPress={() => null} />
-//           </View>
-//         </View>
-//       </TouchableWithoutFeedback>
-//     </KeyboardAvoidingView>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//   },
-//   inner: {
-//     padding: 24,
-//     flex: 1,
-//     justifyContent: 'space-around',
-//   },
-//   header: {
-//     fontSize: 36,
-//     marginBottom: 48,
-//   },
-//   textInput: {
-//     height: 40,
-//     borderColor: '#000000',
-//     borderBottomWidth: 1,
-//     marginBottom: 36,
-//   },
-//   btnContainer: {
-//     backgroundColor: 'white',
-//     marginTop: 12,
-//   },
-// });
-
-// export default KeyboardAvoidingComponent;
+export default AddPromo;
