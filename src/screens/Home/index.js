@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   ImageBackground,
@@ -11,20 +11,27 @@ import {
   Pressable,
   Dimensions,
 } from 'react-native';
+import Modal from 'react-native-modal';
 import {useNavigation} from '@react-navigation/native';
-import Map from '../components/Map';
+import Map from '../../components/Map';
 import Icon from 'react-native-vector-icons/Feather';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import ImageBg from '../assets/images/homebg.jpg';
-import ImageRide from '../assets/images/UberX.jpeg';
-import ImageHour from '../assets/images/UberXL.jpeg';
+import ImageBg from '../../assets/images/homebg.jpg';
+import ImageRide from '../../assets/images/UberX.jpeg';
+import ImageHour from '../../assets/images/UberXL.jpeg';
 
 const SCREEN_HEIGHT = Dimensions.get('screen').height;
+const SCREEN_WIDTH = Dimensions.get('screen').width;
 
 const HomeScreen = () => {
+  const [isModalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
   return (
     <SafeAreaView style={{backgroundColor: 'white'}}>
       <View style={styles.header}>
@@ -47,24 +54,32 @@ const HomeScreen = () => {
         </ImageBackground>
 
         <View style={styles.itemContainer}>
-          <View style={styles.item}>
+          <Pressable
+            onPress={() => navigation.navigate('SearchPlace')}
+            style={styles.item}>
             <Image source={ImageRide} style={styles.itemImage} />
             <Text style={styles.itemText}>Ride</Text>
-          </View>
+          </Pressable>
 
-          <View style={styles.item}>
+          <Pressable
+            onPress={() => navigation.navigate('Hourly')}
+            style={styles.item}>
             <Image source={ImageHour} style={styles.itemImage} />
             <Text style={styles.itemText}>Hourly</Text>
-          </View>
+          </Pressable>
         </View>
 
         <View style={styles.pickup}>
-          <Text style={styles.pickupText}>Enter pickup point</Text>
-          <View style={styles.pickupTime}>
+          <Pressable
+            onPress={() => navigation.navigate('SearchPlace')}
+            style={styles.pickSearch}>
+            <Text style={styles.pickupText}>Enter pickup point</Text>
+          </Pressable>
+          <Pressable style={styles.pickupTime} onPress={toggleModal}>
             <AntDesign name="clockcircle" size={20} />
             <Text style={styles.pickupTimeText}>Now</Text>
             <Icon name="chevron-down" size={15} />
-          </View>
+          </Pressable>
         </View>
 
         <View style={styles.savedRides}>
@@ -107,6 +122,24 @@ const HomeScreen = () => {
         <Text style={styles.headText}>Around you</Text>
         <View style={{height: 200, marginBottom: 100}}>
           <Map />
+        </View>
+
+        <View>
+          <Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>
+            <View style={styles.modal}>
+              <Text style={styles.modalHeader}>Schedule a Ride</Text>
+              <View style={styles.modalTime}>
+                <Text style={styles.modalText}>Sat, Aug 21</Text>
+                <View style={styles.divider} />
+                <Text style={styles.modalText}>8:15 PM - 8:25 PM</Text>
+              </View>
+              <Pressable
+                style={styles.btn}
+                onPress={() => navigation.navigate('EnterMobile')}>
+                <Text style={styles.btnText}>Set pickup time</Text>
+              </Pressable>
+            </View>
+          </Modal>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -187,6 +220,12 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
   },
+  pickSearch: {
+    flex: 1,
+    marginRight: 20,
+    height: 40,
+    justifyContent: 'center',
+  },
   pickupText: {
     fontSize: 18,
     fontWeight: '500',
@@ -236,6 +275,53 @@ const styles = StyleSheet.create({
     paddingVertical: 30,
     fontWeight: '500',
     fontSize: 18,
+  },
+  modal: {
+    height: SCREEN_HEIGHT / 2.5,
+    width: SCREEN_WIDTH,
+    backgroundColor: 'white',
+    position: 'absolute',
+    bottom: 0,
+    marginLeft: -20,
+    marginBottom: -20,
+    alignItems: 'center',
+    textAlign: 'center',
+  },
+  modalHeader: {
+    paddingVertical: 30,
+    fontSize: 26,
+  },
+  modalTime: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#E8E8E8',
+    borderTopWidth: 1,
+    borderTopColor: '#E8E8E8',
+    alignItems: 'center',
+    width: SCREEN_WIDTH,
+  },
+  modalText: {
+    paddingVertical: 20,
+    fontSize: 18,
+  },
+  divider: {
+    borderBottomColor: '#E8E8E8',
+    borderBottomWidth: 1,
+    width: SCREEN_WIDTH - 40,
+  },
+  btn: {
+    flexDirection: 'row',
+    backgroundColor: 'black',
+    width: SCREEN_WIDTH - 40,
+    height: 55,
+    borderRadius: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  btnText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 

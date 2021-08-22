@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView, View, Text, TextInput, StyleSheet} from 'react-native';
-import GoogleInput from '../components/GoogleInput';
+import GoogleInput from '../../components/GoogleInput';
 
 const SearchPlace = () => {
   const navigation = useNavigation();
