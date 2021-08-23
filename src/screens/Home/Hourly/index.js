@@ -12,7 +12,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import ImageBg from '../../assets/images/5283.jpg';
+import ImageBg from '../../../assets/images/5283.jpg';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
 const SCREEN_HEIGHT = Dimensions.get('screen').height;
@@ -57,7 +57,9 @@ const Hourly = () => {
           <Text style={styles.footerRowText}>Starting at</Text>
           <Text style={styles.footerRowText}>NGN 2385.00/hour</Text>
         </View>
-        <Pressable style={styles.btn} onPress={() => navigation.navigate('')}>
+        <Pressable
+          style={styles.btn}
+          onPress={() => navigation.navigate('SetHours')}>
           <Text style={styles.btnText}>Get started</Text>
           <AntDesign
             name="arrowright"

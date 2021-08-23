@@ -4,6 +4,7 @@ import HomeScreen from '../screens/Home';
 import SearchPlace from '../screens/Home/SearchPlaces';
 import PickRide from '../screens/Home/PickRide';
 import Hourly from '../screens/Home/Hourly';
+import SetHours from '../screens/Home/Hourly/SetHours';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ const HomeStack = () => {
       <Stack.Screen name="SearchPlace" component={SearchPlace} />
       <Stack.Screen name="PickRide" component={PickRide} />
       <Stack.Screen name="Hourly" component={Hourly} />
+      <Stack.Screen name="SetHours" component={SetHours} />
     </Stack.Navigator>
   );
 };
