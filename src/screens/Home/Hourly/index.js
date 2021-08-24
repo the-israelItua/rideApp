@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT / 2.5,
-    resizeMode: 'cover',
+    resizeMode: 'contain',
   },
   rideItem: {
     flexDirection: 'row',

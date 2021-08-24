@@ -48,12 +48,11 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH,
   },
   row: {
-    padding: 20,
+    paddingHorizontal: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-
-    marginVertical: 20,
+    marginTop: 20,
   },
   detailsContainer: {
     flexDirection: 'row',
@@ -77,22 +76,6 @@ const styles = StyleSheet.create({
   },
   price: {
     fontWeight: '500',
-    fontSize: 16,
-  },
-  button: {
-    backgroundColor: 'black',
-    margin: 20,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 4,
-    position: 'absolute',
-    width: SCREEN_WIDTH - 40,
-    top: '75%',
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
     fontSize: 16,
   },
 });

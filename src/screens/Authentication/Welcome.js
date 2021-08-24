@@ -44,8 +44,9 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   image: {
-    height: '50%',
+    height: '60%',
     width: '100%',
+    resizeMode: 'cover',
   },
   subText: {
     fontSize: 20,

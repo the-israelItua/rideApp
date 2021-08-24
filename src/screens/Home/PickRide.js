@@ -7,15 +7,17 @@ import {
   Pressable,
   StyleSheet,
 } from 'react-native';
-import {useRoute} from '@react-navigation/native';
+import {useRoute, useNavigation} from '@react-navigation/native';
 import BottomDrawer from 'react-native-bottom-drawer-view';
 import Map from '../../components/Map';
 import RidesAvailable from '../../components/RidesAvailable';
 
 const SCREEN_HEIGHT = Dimensions.get('screen').height;
+const SCREEN_WIDTH = Dimensions.get('screen').width;
 
 const PickRide = () => {
   const route = useRoute();
+  const navigation = useNavigation();
   console.log(route.props);
   return (
     <View>
@@ -32,9 +34,9 @@ const PickRide = () => {
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{
-            justifyContent: 'center',
             alignItems: 'center',
             padding: 10,
+            flex: 1,
           }}>
           <View
             style={{
@@ -58,5 +60,26 @@ const PickRide = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  button: {
+    position: 'absolute',
+    bottom: 0,
+    backgroundColor: 'black',
+    // margin: 20,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 4,
+    position: 'absolute',
+    width: SCREEN_WIDTH - 40,
+    top: '75%',
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+});
 
 export default PickRide;

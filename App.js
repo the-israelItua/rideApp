@@ -17,6 +17,10 @@ import {
 import Geolocation from '@react-native-community/geolocation';
 import RootNavigator from './src/navigation/root';
 import 'react-native-gesture-handler';
+import Amplify from 'aws-amplify';
+import config from './src/aws-exports';
+
+Amplify.configure(config);
 
 navigator.geolocation = require('@react-native-community/geolocation');
 
