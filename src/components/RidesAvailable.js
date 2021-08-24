@@ -31,35 +31,29 @@ const RidesAvailable = () => {
               <Text style={styles.name}>
                 {item.type} <Icon name="person" /> 3
               </Text>
-              <Text style={styles.time}> 4:03pm dropoff</Text>
+              <Text style={styles.time}> 40 kilometers included</Text>
             </View>
           </View>
           <View>
-            <Text style={styles.price}>
-              <Icon name="pricetag" color="#42d742" size={16} /> {'  '}est. $
-              {item.price}
-            </Text>
+            <Text style={styles.price}>NGN {item.price}</Text>
           </View>
         </View>
       ))}
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('Home')}>
-        <Text style={styles.buttonText}>Confirm Ride</Text>
-      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    height: 400,
+    width: SCREEN_WIDTH,
   },
   row: {
     padding: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+
+    marginVertical: 20,
   },
   detailsContainer: {
     flexDirection: 'row',
@@ -68,7 +62,7 @@ const styles = StyleSheet.create({
   image: {
     width: 60,
     height: 60,
-    resizeMode: 'cover',
+    resizeMode: 'contain',
   },
   details: {
     marginLeft: 10,
@@ -82,7 +76,7 @@ const styles = StyleSheet.create({
     color: '#5d5d5d',
   },
   price: {
-    fontWeight: 'bold',
+    fontWeight: '500',
     fontSize: 16,
   },
   button: {
