@@ -48,7 +48,9 @@ const CustomDrawer = props => {
           <Text style={styles.menuItemText}>Wallet</Text>
         </Pressable>
 
-        <Pressable style={styles.menuItem}>
+        <Pressable
+          style={styles.menuItem}
+          onPress={() => navigation.navigate('SettingsStack')}>
           <Text style={styles.menuItemText}>Settings</Text>
         </Pressable>
       </View>

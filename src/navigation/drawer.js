@@ -5,6 +5,7 @@ import HomeStack from './home-stack';
 import WalletStack from './wallet-stack';
 import AccountStack from './account-stack';
 import CustomDrawer from '../components/Custom-drawer';
+import SettingsStack from './settings-stack';
 
 const Drawer = createDrawerNavigator();
 
@@ -37,7 +38,7 @@ const DrawerMenu = () => {
       <Drawer.Screen name="Index" component={HomeStack} />
       <Drawer.Screen name="Help" component={NotificationsScreen} />
       <Drawer.Screen name="WalletStack" component={WalletStack} />
-      <Drawer.Screen name="Settings" component={NotificationsScreen} />
+      <Drawer.Screen name="SettingsStack" component={SettingsStack} />
       <Drawer.Screen name="AccountStack" component={AccountStack} />
     </Drawer.Navigator>
   );

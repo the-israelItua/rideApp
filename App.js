@@ -16,9 +16,10 @@ import {
 } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 import RootNavigator from './src/navigation/root';
-import 'react-native-gesture-handler';
+import {withAuthenticator} from 'aws-amplify-react-native';
 import Amplify from 'aws-amplify';
 import config from './src/aws-exports';
+import 'react-native-gesture-handler';
 
 Amplify.configure(config);
 

@@ -1,6 +1,5 @@
 # Lambda Function for SignUp Trigger
 
-```jsx
 const aws = require('aws-sdk')
 const ddb = new aws.DynamoDB()
 
@@ -34,11 +33,11 @@ exports.handler = async (event, context) => {
         context.done(null, event)
     }
 };
-```
+
 
 # Lambda IAM Permission to access DynamoDb
 
-```
+
 /*
 IAM permissions
 {
@@ -54,4 +53,4 @@ IAM permissions
     ]
 }
 */
-```
+

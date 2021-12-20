@@ -10,6 +10,14 @@
       "StackName": "amplify-rideapp-dev-230255",
       "StackId": "arn:aws:cloudformation:us-east-1:557338777360:stack/amplify-rideapp-dev-230255/0d2ba3f0-0527-11ec-8c6a-0e65f7e0e97d",
       "AmplifyAppId": "djfw04auzc65o"
+    },
+    "categories": {
+      "function": {
+        "rideAppPostConfirmation": {}
+      },
+      "auth": {
+        "rideApp": {}
+      }
     }
   }
 }
